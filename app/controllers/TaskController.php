@@ -8,16 +8,14 @@ class TaskController extends Controller {
 
     public function index() {
         $tasks = $this->model->read();
-
-        var_dump($tasks);
-        $this->view->generate("mainView.php", "templateView.php", $tasks);
+        $this->view->generate("mainView.php", "indexView.php", $tasks);
     }
 
     public function create() {
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $category = $_POST["category"];
             $description = $_POST["description"];
-            $status = 'Awaiting';
+            $status = "Awaiting";
             $deadline = $_POST["deadline"];
 
             $this->model->create($category, $description, $status, $deadline);
@@ -25,6 +23,6 @@ class TaskController extends Controller {
             header("Location: /");
         }
 
-        $this->view->generate("createView.php", "templateView.php");
+        $this->view->generate("createView.php", "formView.php");
     }
 }

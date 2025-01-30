@@ -25,14 +25,14 @@ class Route {
     $modelPath = "app/models/" . $modelFile;
 
     if (file_exists($modelPath)) {
-        require $modelPath;
+        include $modelPath;
     }
 
     $controllerFile = strtolower($controllerName) . '.php';
     $controllerPath = "app/controllers/" . $controllerFile;
 
     if (file_exists($controllerPath)) {
-        require $controllerPath;
+        include $controllerPath;
     } else {
         self::ErrorPage404();
     }
@@ -40,7 +40,7 @@ class Route {
     $controller = new $controllerName($conn);
 
     if (method_exists($controller, $actionName)) {
-        // обработка случая с id != null
+        // обработка случая с id != null:
         $controller->$actionName();
     } else {
         self::ErrorPage404();

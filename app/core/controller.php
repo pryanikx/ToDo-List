@@ -1,6 +1,6 @@
 <?php
 
-class Controller {
+abstract class Controller {
     public $model;
     public $view;
 
@@ -8,5 +8,5 @@ class Controller {
         $this->view = new View();
     }
 
-    public function index() {}
+    abstract public function index();
 }

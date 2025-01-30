@@ -1,12 +1,13 @@
 <?php
 
-class Model {
-    public function getTask($id) {}
-    public function create($category, $description, $status, $deadline) {}
+abstract class Model {
+    abstract public function getTask($id);
 
-    public function read() {}
+    abstract public function create($category, $description, $status, $deadline);
 
-    public function update($id, $category, $description, $deadline, $status) {}
+    abstract public function read();
 
-    public function delete($id) {}
+    abstract public function update($id, $category, $description, $deadline, $status);
+
+    abstract public function delete($id);
 }
