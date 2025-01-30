@@ -2,7 +2,7 @@
 
 class Model {
     public function getTask($id) {}
-    public function create($category, $description, $deadline) {}
+    public function create($category, $description, $status, $deadline) {}
 
     public function read() {}
 

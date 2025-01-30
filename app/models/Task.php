@@ -8,10 +8,14 @@ class Task extends Model {
     }
 
     public function getTask($id) {}
-    public function create($category, $description, $deadline) {}
+    public function create($category, $description, $status, $deadline) {
+        $sql = "INSERT INTO tasks (category, description, status, deadline)
+        VALUES ('$category', '$description', '$status' , '$deadline')";
+
+        $result = Database::getInstance()->query($sql);
+    }
 
     public function read() {
-        // TODO: create tables in the database
         $sql = "SELECT * FROM tasks";
         $tasks = Database::getInstance()->query($sql);
 

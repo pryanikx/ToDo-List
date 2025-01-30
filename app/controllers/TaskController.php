@@ -8,6 +8,23 @@ class TaskController extends Controller {
 
     public function index() {
         $tasks = $this->model->read();
+
+        var_dump($tasks);
         $this->view->generate("mainView.php", "templateView.php", $tasks);
+    }
+
+    public function create() {
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $category = $_POST["category"];
+            $description = $_POST["description"];
+            $status = 'Awaiting';
+            $deadline = $_POST["deadline"];
+
+            $this->model->create($category, $description, $status, $deadline);
+
+            header("Location: /");
+        }
+
+        $this->view->generate("createView.php", "templateView.php");
     }
 }
