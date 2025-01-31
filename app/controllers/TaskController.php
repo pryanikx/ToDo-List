@@ -25,4 +25,17 @@ class TaskController extends Controller {
 
         $this->view->generate("createView.php", "formView.php");
     }
+
+    public function delete($id) {
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $deleted = $this->model->delete($id);
+
+            if ($deleted) {
+                header("Location: /");
+                exit;
+            } else {
+                die("Error while deletion");
+            }
+        }
+    }
 }

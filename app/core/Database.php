@@ -43,6 +43,11 @@ class Database {
         if ($this->conn->error) {
             throw new Exception("Запрос не выполнен: " . $this->conn->error);
         }
-        return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
+
+        if ($result instanceof mysqli_result) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        return $result;
     }
 }

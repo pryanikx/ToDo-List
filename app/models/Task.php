@@ -24,6 +24,12 @@ class Task extends Model {
 
     public function update($id, $category, $description, $deadline, $status) {}
 
-    public function delete($id) {}
+    public function delete($id) {
+        $sql = "DELETE FROM tasks WHERE id = $id";
+
+        $deleted = Database::getInstance()->query($sql);
+        
+        return $deleted;
+    }
     
 }

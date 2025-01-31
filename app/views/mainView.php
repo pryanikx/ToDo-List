@@ -11,10 +11,10 @@
     <p>deadline: <?= $task["deadline"]; ?></p>
     <a href="/Task/update/<?= htmlspecialchars($task['id']); ?>" class="button">Edit</a>
 
-    <form action="/Task/delete/<?= htmlspecialchars($task['id']); ?>" method="post" target="hiddenFrame">
-    <button class="button" type="submit" onclick="return confirm('Вы уверены, что хотите удалить задачу')">Delete</button>
+    <form action="/Task/delete/<?= htmlspecialchars($task['id']); ?>" method="post">
+        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
+        <button class="button" type="submit" onclick="return confirm('Вы уверены, что хотите удалить задачу?')">Delete</button>
     </form>
-    <iframe name="hiddenFrame" style="display:none;"></iframe>
 
     <!-- // TODO: add ability to change the status of the task -->
     <!-- // TODO: change delete button: use ajax instead of simple form-->

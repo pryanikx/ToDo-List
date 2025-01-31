@@ -40,8 +40,11 @@ class Route {
     $controller = new $controllerName($conn);
 
     if (method_exists($controller, $actionName)) {
-        // обработка случая с id != null:
-        $controller->$actionName();
+        if ($id !== null) {
+            $controller->$actionName($id);
+        } else {
+            $controller->$actionName();
+        }
     } else {
         self::ErrorPage404();
     }
