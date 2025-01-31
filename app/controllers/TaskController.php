@@ -14,6 +14,7 @@ class TaskController extends Controller {
 
     public function index() {
         $tasks = $this->model->read();
+
         $this->view->generate("mainView.php", "indexView.php", $tasks);
     }
 
@@ -22,7 +23,7 @@ class TaskController extends Controller {
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $category_id = $_POST["category_id"];
             $description = $_POST["description"];
-            $status = Status::CREATED;
+            $status = Status::AWAITING;
             $deadline = $_POST["deadline"];
 
             $this->model->create($category_id, $description, $status, $deadline);

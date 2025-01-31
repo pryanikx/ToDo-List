@@ -8,10 +8,10 @@
     </select><br>
     
     <button type="button" id="addCategoryBtn">Добавить категорию</button>
-    <input type="text" name="new_category" id="newCategoryInput" placeholder="Новая категория" style="display: none;">
-    <textarea id="text" name="description" value="text" rows="10" cols="30" required>Description of the task</textarea><br>
-    <input type="datetime-local" name="deadline"><br>
-    <input type="submit" name="add" value="Добавить статью">
+    <input type="text" name="new_category" id="newCategoryInput" placeholder="New category" style="display: none;">
+    <textarea id="text" name="description" value="text" rows="10" cols="30" placeholder="Description of the task" required></textarea><br>
+    <input type="datetime-local" name="deadline" required><br>
+    <input type="submit" name="add" value="Create task">
 </form>
 <footer>
     <p>&copy; <?= date('Y') ?> pernikkov</p>

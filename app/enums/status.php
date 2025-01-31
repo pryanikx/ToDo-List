@@ -1,6 +1,6 @@
 <?php
 
 enum Status: string {
-    case CREATED = 'Awaiting';
+    case AWAITING = 'Awaiting';
     case COMPLETED = 'Completed';
 }
