@@ -1,24 +1,31 @@
 <?php
 
+require_once "app/models/Category.php";
+
 class TaskController extends Controller {
     public function __construct($conn) {
         $this->view = new View();
         $this->model = new Task($conn);
+        $this->category = new Category($conn);
     }
+
+    
+    // TODO: реализовать функции CRUD с классом Category
 
     public function index() {
         $tasks = $this->model->read();
         $this->view->generate("mainView.php", "indexView.php", $tasks);
     }
 
+
     public function create() {
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $category = $_POST["category"];
+            $category_id = $_POST["category_id"];
             $description = $_POST["description"];
-            $status = "Awaiting";
+            $status = Status::CREATED;
             $deadline = $_POST["deadline"];
 
-            $this->model->create($category, $description, $status, $deadline);
+            $this->model->create($category_id, $description, $status, $deadline);
 
             header("Location: /");
         }

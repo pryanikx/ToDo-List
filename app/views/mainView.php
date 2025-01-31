@@ -4,11 +4,11 @@
 <div class="content">
 <a href="/Task/create" class="button">Add task</a>
 <?php foreach($data as $task): ?>
-    <h3><?= $task["category"]; ?></h3>
-    <p><?= $task["description"]; ?></p>
-    <p>status: <?= $task["status"]; ?></p>
-    <p>created at: <?= $task["created_at"]; ?></p>
-    <p>deadline: <?= $task["deadline"]; ?></p>
+    <h3><?= $task["categories.name"]; ?></h3>
+    <p><?= $task["tasks.description"]; ?></p>
+    <p>status: <?= $task["tasks.status"]; ?></p>
+    <p>created at: <?= $task["tasks.created_at"]; ?></p>
+    <p>deadline: <?= $task["tasks.deadline"]; ?></p>
     <a href="/Task/update/<?= htmlspecialchars($task['id']); ?>" class="button">Edit</a>
 
     <form action="/Task/delete/<?= htmlspecialchars($task['id']); ?>" method="post">
