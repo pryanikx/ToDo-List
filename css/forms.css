@@ -27,6 +27,8 @@ footer {
     display: inline-block;
     background-color: #11120D;
     color: #FFFBF4;
+    font-family: 'Times New Roman', sans-serif;
+    font-size: 1em;
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;

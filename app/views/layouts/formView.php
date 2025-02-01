@@ -7,6 +7,9 @@
     <title>ToDo-List</title>
 </head>
 <body>
-    <?php include "app/views/" . $contentView ?>
+    <?php 
+        include "app/views/" . $contentView;
+        include "footer.php";
+    ?>
 </body>
 </html>

@@ -37,10 +37,6 @@ function getContrastColor($hex) {
     <input type="submit" name="add" value="Create task">
 </form>
 
-<footer>
-    <p>&copy; <?= date('Y') ?> pernikkov</p>
-</footer>
-
 <script>
     document.getElementById("addCategoryBtn").addEventListener("click", function() {
         var container = document.getElementById("newCategoryContainer");

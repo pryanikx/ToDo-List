@@ -1,6 +1,3 @@
-<header>
-    <h1>ToDo List!</h1>
-</header>
 <div class="content">
 <a href="/Task/create" class="button">Add task</a>
 <?php foreach($data as $task): ?>
@@ -20,6 +17,3 @@
     </form>
 <?php endforeach ?>
 </div>
-<footer>
-    <p>&copy; <?= date('Y') ?> pernikkov</p>
-</footer>
