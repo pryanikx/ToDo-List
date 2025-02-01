@@ -23,6 +23,22 @@ footer {
     width: 100%;
 }
 
+.button {
+    display: inline-block;
+    background-color: #11120D;
+    color: #FFFBF4;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 10px 0;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #565449;
+}
+
 form {
     max-width: 800px;
     margin: 50px auto;
@@ -38,6 +54,53 @@ form label {
     color: #11120D;
     margin-bottom: 5px;
     display: block;
+}
+
+/* Стилизация <select> */
+form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #565449;
+    border-radius: 5px;
+    background-color: #FFFBF4;
+    color: #11120D;
+    font-size: 1em;
+    font-family: 'Times New Roman', sans-serif;
+    appearance: none; /* Убираем стандартный стиль браузера */
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    /* Кастомная стрелка */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2311120D'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+}
+
+/* Фокус на select */
+form select:focus {
+    border-color: #11120D;
+    box-shadow: 0 0 5px rgba(17, 18, 13, 0.5);
+}
+
+/* Стилизация options */
+form select option {
+    padding: 10px;
+    font-size: 1em;
+    font-family: 'Times New Roman', sans-serif;
+    background-color: #FFFBF4;
+}
+
+/* Контрастный цвет для option (будет задаваться через inline style) */
+
+
+form input[type="color"] {
+    margin-bottom: 15px;
+    font-size: 1em;
+    font-family: 'Times New Roman', sans-serif;
+    border: 1px solid #11120D;
+    border-radius: 5px;
+    background-color: #FFFBF4;
 }
 
 form input[type="text"],

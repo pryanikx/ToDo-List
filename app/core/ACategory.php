@@ -3,7 +3,7 @@
 abstract class ACategory {
     abstract public function getCategory($id);
 
-    abstract public function create($name);
+    abstract public function create($name, $color);
 
     abstract public function read();
 

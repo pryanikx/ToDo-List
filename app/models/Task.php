@@ -17,7 +17,7 @@ class Task extends ATask {
 
     public function read() {
         $sql = "SELECT 
-        tasks.id, tasks.description, tasks.deadline, tasks.completed_at, tasks.created_at, categories.name, tasks.status 
+        tasks.id, tasks.description, tasks.deadline, tasks.completed_at, tasks.created_at, categories.name, categories.color, tasks.status 
         FROM tasks
         INNER JOIN categories ON tasks.category_id = categories.id";
         $tasks = Database::getInstance()->query($sql);

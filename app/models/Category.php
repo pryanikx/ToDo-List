@@ -28,8 +28,8 @@ class Category extends ACategory {
         return $categories;
     }
 
-    public function create($name) {
-        $sql = "INSERT INTO categories (name) VALUES ('$name')";
+    public function create($name, $color) {
+        $sql = "INSERT INTO categories (name, color) VALUES ('$name', '$color')";
 
         $categories = Database::getInstance()->query($sql);
     }

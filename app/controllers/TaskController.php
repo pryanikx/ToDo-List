@@ -20,6 +20,7 @@ class TaskController extends Controller {
     public function formValidate($post) {
         $category_id = isset($post["category"]) ? (int)$post["category"] : null;
         $new_category = trim($post["new_category"]);
+        $new_category_color = trim($post["new_category_color"]);
 
         if ($category_id) {
             if ($new_category) {
@@ -27,7 +28,7 @@ class TaskController extends Controller {
             }
             return $category_id;
         } elseif($new_category) {
-            $this->category->create($new_category);
+            $this->category->create($new_category, $new_category_color);
             $category = $this->category->getCategory($new_category, false);
             return $category[0]['id'];
         }
@@ -36,7 +37,11 @@ class TaskController extends Controller {
 
     public function create() {
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $category_id = $this->formValidate(["category" => $_POST["category"], "new_category" => $_POST["new_category"]]);
+            $post_category = [
+                "category" => $_POST["category"],
+                "new_category" => $_POST["new_category"],
+                "new_category_color" => $_POST["new_category_color"]];
+            $category_id = $this->formValidate($post_category);
             $description = $_POST["description"];
             $status = Status::AWAITING->value;
             $deadline = $_POST["deadline"];
