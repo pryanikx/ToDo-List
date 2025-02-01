@@ -18,12 +18,29 @@ class TaskController extends Controller {
         $this->view->generate("mainView.php", "indexView.php", $tasks);
     }
 
+    public function formValidate($post) {
+        $category_id = isset($post["category"]) ? (int)$post["category"] : null;
+        $category = $category_id ? $this->category->getCategory($category_id, true) : null;
+        $new_category = $post["new_category"];
+
+        if ($category) {
+            if ($new_category) {
+                die("Указаны две категории");
+            }
+            return $category_id;
+        } elseif($new_category) {
+            $this->category->create($new_category);
+            $category = $this->category->getCategory($new_category, false);
+            return $category[0]['id'];
+        }
+    }
+
 
     public function create() {
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $category_id = $_POST["category_id"];
+            $category_id = $this->formValidate([$_POST["category"], $_POST["new_category]"]]);
             $description = $_POST["description"];
-            $status = Status::AWAITING;
+            $status = Status::AWAITING->value;
             $deadline = $_POST["deadline"];
 
             $this->model->create($category_id, $description, $status, $deadline);
@@ -31,7 +48,9 @@ class TaskController extends Controller {
             header("Location: /");
         }
 
-        $this->view->generate("createView.php", "formView.php");
+        $categories = $this->category->read();
+
+        $this->view->generate("createView.php", "formView.php", $categories);
     }
 
     public function delete($id) {
