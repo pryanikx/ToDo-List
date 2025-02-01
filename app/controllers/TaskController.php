@@ -9,7 +9,6 @@ class TaskController extends Controller {
         $this->category = new Category($conn);
     }
 
-    
     // TODO: реализовать функции CRUD с классом Category
 
     public function index() {
@@ -20,10 +19,9 @@ class TaskController extends Controller {
 
     public function formValidate($post) {
         $category_id = isset($post["category"]) ? (int)$post["category"] : null;
-        $category = $category_id ? $this->category->getCategory($category_id, true) : null;
-        $new_category = $post["new_category"];
+        $new_category = trim($post["new_category"]);
 
-        if ($category) {
+        if ($category_id) {
             if ($new_category) {
                 die("Указаны две категории");
             }
@@ -38,7 +36,7 @@ class TaskController extends Controller {
 
     public function create() {
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $category_id = $this->formValidate([$_POST["category"], $_POST["new_category]"]]);
+            $category_id = $this->formValidate(["category" => $_POST["category"], "new_category" => $_POST["new_category"]]);
             $description = $_POST["description"];
             $status = Status::AWAITING->value;
             $deadline = $_POST["deadline"];
