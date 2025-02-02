@@ -9,6 +9,13 @@
     <p>status: <?= htmlspecialchars($task["status"]); ?></p>
     <p>created at: <?= htmlspecialchars($task["created_at"]); ?></p>
     <p>deadline: <?= htmlspecialchars($task["deadline"]); ?></p>
+
+    <?php if ($task["status"] === Status::AWAITING->value) { ?>
+        <a href="/Task/changeStatus/<?= htmlspecialchars($task['id']); ?>" class="button">Mark as completed</a>
+    <?php } else { ?>
+        <a href="/Task/changeStatus/<?= htmlspecialchars($task['id']); ?>" class="button">Mark as awaiting</a>
+    <?php } ?>
+
     <a href="/Task/update/<?= htmlspecialchars($task['id']); ?>" class="button">Edit</a>
 
     <form action="/Task/delete/<?= htmlspecialchars($task['id']); ?>" method="post">

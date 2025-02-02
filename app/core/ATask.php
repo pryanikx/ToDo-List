@@ -9,5 +9,7 @@ abstract class ATask {
 
     abstract public function update($id, $category_id, $description, $deadline);
 
+    abstract public function changeStatus($id);
+
     abstract public function delete($id);
 }

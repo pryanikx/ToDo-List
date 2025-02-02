@@ -14,7 +14,7 @@ class TaskController extends Controller {
     public function index() {
         $tasks = $this->model->read();
 
-        $this->view->generate("mainView.php", "indexView.php", $tasks);
+        $this->view->generate("mainView.php", "tasksListView.php", $tasks);
     }
 
     public function formValidate($post) {
@@ -76,6 +76,17 @@ class TaskController extends Controller {
         $data = ["task" => $task, "categories" => $categories]; 
 
         $this->view->generate("updateView.php", "formView.php", $data);
+    }
+
+    public function changeStatus($id) {
+            $changedStatus = $this->model->changeStatus($id);
+
+            if ($changedStatus) {
+                header("Location: /");
+                exit;
+            } else {
+                die("Eror while changing status");
+            }
     }
 
     public function delete($id) {

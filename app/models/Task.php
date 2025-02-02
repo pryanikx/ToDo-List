@@ -43,6 +43,25 @@ class Task extends ATask {
         $tasks = Database::getInstance()->query($sql);
     }
 
+    public function changeStatus($id) {
+        $task = $this->getTask($id);
+        $status = $task["status"];
+
+        if ($status === Status::COMPLETED->value) {
+            $status = Status::AWAITING->value;
+        } else {
+            $status = Status::COMPLETED->value;
+        }
+
+        $sql = "UPDATE tasks
+        SET status = '$status'
+        WHERE id = $id";
+
+        $changedStatus = Database::getInstance()->query($sql);
+
+        return $changedStatus;
+    }
+
     public function delete($id) {
         $sql = "DELETE FROM tasks WHERE id = $id";
 
