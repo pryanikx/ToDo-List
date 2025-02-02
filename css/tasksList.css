@@ -11,11 +11,43 @@ body {
 }
 
 header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background-color: #565449;
     color: #FFFBF4;
-    padding: 20px 0;
-    text-align: center;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
+
+nav {
+    display: flex;
+    gap: 20px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); /* Центрирует ссылки */
+}
+
+a {
+    color: #FFFBF4;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+a:hover {
+    background-color: #FFFBF4;
+    color: #565449;
+}
+
+h1 {
+    margin-right: 20px; /* Отступ от правого края */
+}
+
+
 
 h1 {
     margin: 0;

@@ -47,8 +47,10 @@ class Task extends ATask {
         $task = $this->getTask($id);
         $status = $task["status"];
 
-        if ($status === Status::COMPLETED->value) {
+        if ($status === Status::COMPLETED->value || $status === Status::COMPLETED_AFTER_DEADLINE->value) {
             $status = Status::AWAITING->value;
+        } elseif (strtotime($task["deadline"]) < (time() + (3*3600)))  {
+            $status = Status::COMPLETED_AFTER_DEADLINE->value;
         } else {
             $status = Status::COMPLETED->value;
         }

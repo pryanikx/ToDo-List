@@ -14,7 +14,7 @@ function getContrastColor($hex) {
     <label for="categories">Category:</label>
 
     <select name="category" id="categories">
-        <option value="" selected disabled>category</option>
+        <option value="" selected disabled>choose a category</option>
         <?php foreach ($data as $category): 
             $textColor = getContrastColor($category['color']); ?>
             <option value="<?= $category['id']?>"

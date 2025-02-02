@@ -1,5 +1,4 @@
 <div class="content">
-<a href="/Task/create" class="button">Add task</a>
 <?php foreach($data as $task): ?>
     <h3>
         <span class="task-circle" style="background-color: <?= htmlspecialchars($task['color']); ?>;"></span>
