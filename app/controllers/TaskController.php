@@ -56,6 +56,28 @@ class TaskController extends Controller {
         $this->view->generate("createView.php", "formView.php", $categories);
     }
 
+    public function update($id) {
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $post_category = [
+                "category" => $_POST["category"],
+                "new_category" => $_POST["new_category"],
+                "new_category_color" => $_POST["new_category_color"]];
+            $category_id = $this->formValidate($post_category);
+            $description = $_POST["description"];
+            $deadline = $_POST["deadline"];
+
+            $this->model->update($id, $category_id, $description, $deadline);
+
+            header("Location: /");
+        }
+
+        $task = $this->model->getTask($id);
+        $categories = $this->category->read();
+        $data = ["task" => $task, "categories" => $categories]; 
+
+        $this->view->generate("updateView.php", "formView.php", $data);
+    }
+
     public function delete($id) {
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $deleted = $this->model->delete($id);

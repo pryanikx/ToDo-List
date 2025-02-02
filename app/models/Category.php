@@ -34,7 +34,13 @@ class Category extends ACategory {
         $categories = Database::getInstance()->query($sql);
     }
 
-    public function update($id, $name) {}
+    public function update($id, $name, $color) {
+        $sql = "UPDATE categories 
+        SET name = '$name', color = '$color'
+        WHERE id = $id";
+
+        $categories = Database::getInstance()->query($sql);
+        }
 
     public function delete($id) {}
 }
