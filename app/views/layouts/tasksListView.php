@@ -8,10 +8,10 @@
 </head>
 <body>
 <?php 
-        require_once "header.php";
+        require_once "app/views/layouts/header.php";
         require_once "app/views/" . $contentView;
-        require_once "sort_filter.php";
-        require_once "footer.php";
+        require_once "app/views/layouts/sort_filter.php";
+        require_once "app/views/layouts/footer.php";
     ?>
 </body>
 </html>

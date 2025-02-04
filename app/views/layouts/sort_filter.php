@@ -1,5 +1,4 @@
 <?php
-// Функция для вычисления контрастного цвета текста
 function getContrastColor($hex) {
     $hex = ltrim($hex, '#');
     $r = hexdec(substr($hex, 0, 2));
@@ -25,13 +24,18 @@ function getContrastColor($hex) {
             <label for="category_filter">Отдельная категория:</label>
             <select id="category_filter" name="category_filter">
                 <option selected = "selected" value="all">Все</option>
-                <?php foreach ($data as $category): 
-                $textColor = getContrastColor($category['color']); ?>
-                <option value="<?= $category['id']?>"
-                style="background: <?= $category['color'] ?>; color: <?= $textColor ?>;">
-                <?= $category['name'] ?>
-                </option>
-                <?php endforeach; ?>
+                <?php 
+                $uniqueCategories = [];
+
+                foreach ($data as $task):
+                    if (!isset($uniqueCategories[$task["name"]])) {
+                        $uniqueCategories[$task["name"]] = true;    
+                    $textColor = getContrastColor($task['color']); ?>
+                    <option value="<?= $task['name']?>"
+                    style="background: <?= $task['color'] ?>; color: <?= $textColor ?>;">
+                    <?= $task['name'] ?>
+                    </option>
+                <?php } endforeach; ?>
             </select><br>
 
             <label for="after_deadline">Только просроченные</label>
