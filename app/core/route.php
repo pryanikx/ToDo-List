@@ -1,60 +1,59 @@
 <?php
 
 class Route {
-
     static function start($conn) {
         $controllerName = 'Task';
         $actionName = 'index';
 
-    $routes = explode('/', $_SERVER['REQUEST_URI']);
+        // Очистка URL от GET-параметров
+        $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        $routes = explode('/', trim($uri, '/'));
 
-    if (!empty($routes[1])) {
-        $controllerName = $routes[1];
-    }
-
-    if (!empty($routes[2])) {
-        $actionName = $routes[2];
-    }
-
-    $id = !empty($routes[3]) ? $routes[3] : null; 
-
-    $modelName = $controllerName;
-    $controllerName = $controllerName . "Controller";
-
-    $modelFile = strtolower($modelName) . '.php';
-    $modelPath = "app/models/" . $modelFile;
-
-    if (file_exists($modelPath)) {
-        include $modelPath;
-    }
-
-    $controllerFile = strtolower($controllerName) . '.php';
-    $controllerPath = "app/controllers/" . $controllerFile;
-
-    if (file_exists($controllerPath)) {
-        include $controllerPath;
-    } else {
-        self::ErrorPage404();
-    }
-
-    $controller = new $controllerName($conn);
-
-    if (method_exists($controller, $actionName)) {
-        if ($id !== null) {
-            $controller->$actionName($id);
-        } else {
-            $controller->$actionName();
+        if (!empty($routes[0])) {
+            $controllerName = $routes[0];
         }
-    } else {
-        self::ErrorPage404();
+
+        if (!empty($routes[1])) {
+            $actionName = explode('?', $routes[1])[0]; // Убираем GET-параметры
+        }
+
+        $id = !empty($routes[2]) ? $routes[2] : null; 
+
+        $modelName = $controllerName;
+        $controllerName = $controllerName . "Controller";
+
+        $modelFile = "app/models/" . strtolower($modelName) . ".php";
+        $controllerFile = "app/controllers/" . strtolower($controllerName) . ".php";
+
+        if (file_exists($modelFile)) {
+            include $modelFile;
+        }
+
+        if (file_exists($controllerFile)) {
+            include $controllerFile;
+            if (!class_exists($controllerName)) {
+                self::ErrorPage404();
+            }
+        } else {
+            self::ErrorPage404();
+        }
+
+        $controller = new $controllerName($conn);
+
+        if (is_callable([$controller, $actionName])) {
+            if ($id !== null) {
+                $controller->$actionName($id);
+            } else {
+                $controller->$actionName();
+            }
+        } else {
+            self::ErrorPage404();
+        }
     }
-}
 
     static function ErrorPage404() {
-        $host = "http://" . $_SERVER['HTTP_HOST'] . '/';
         header('HTTP/1.1 404 Not Found');
-        header('Status : 404 Not Found');
-        header('Location:' . $host . '404');
+        header('Location: /404');
         exit();
     }
 }

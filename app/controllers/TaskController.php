@@ -10,11 +10,23 @@ class TaskController extends Controller {
     }
 
     public function index() {
-        /* $filter = $_GET["filter"] ?? null;
-        $sort =  $_GET["sort"] ?? null; */
-        $tasks = $this->model->read();
+        $time_filter = $_GET["time_filter"] ?? null;
+        $category_filter = $_GET["category_filter"] ?? null;
+        $overdue = $_GET["overdue"] ?? null;
+        $sort =  $_GET["sort"] ?? null;
+        $order = $_GET["order"] ?? null;
 
-        $this->view->generate("mainView.php", "tasksListView.php", $tasks);
+        $tasks = $this->model->read($completed = null, $time_filter, $category_filter, $overdue, $sort, $order);
+
+        $this->view->generate("mainView.php", "tasksListTemplate.php", $tasks);
+    }
+
+    public function completed() {
+        $completed = true;
+
+        $tasks = $this->model->read($completed);
+
+        $this->view->generate("completedTasksView.php", "tasksListTemplate.php", $tasks);
     }
 
     public function formValidate($post) {
@@ -53,7 +65,7 @@ class TaskController extends Controller {
 
         $categories = $this->category->read();
 
-        $this->view->generate("createView.php", "formView.php", $categories);
+        $this->view->generate("createView.php", "formTemplate.php", $categories);
     }
 
     public function update($id) {
@@ -75,7 +87,7 @@ class TaskController extends Controller {
         $categories = $this->category->read();
         $data = ["task" => $task, "categories" => $categories]; 
 
-        $this->view->generate("updateView.php", "formView.php", $data);
+        $this->view->generate("updateView.php", "formTemplate.php", $data);
     }
 
     public function changeStatus($id) {

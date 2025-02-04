@@ -5,7 +5,7 @@ abstract class ATask {
 
     abstract public function create($category_id, $description, $status, $deadline);
 
-    abstract public function read();
+    abstract public function read($time_filter, $category_filter, $overdue, $sort, $order);
 
     abstract public function update($id, $category_id, $description, $deadline);
 
