@@ -9,9 +9,10 @@ class TaskController extends Controller {
         $this->category = new Category($conn);
     }
 
-    // TODO: реализовать функции CRUD с классом Category
-
     public function index() {
+
+        /* $filter = $_GET["filter"] ?? null;
+        $sort =  $_GET["sort"] ?? null; */
         $tasks = $this->model->read();
 
         $this->view->generate("mainView.php", "tasksListView.php", $tasks);

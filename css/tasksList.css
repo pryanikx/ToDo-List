@@ -8,6 +8,8 @@ body {
     flex-direction: column;
     min-height: 100vh;
     width: 100%;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 header {
@@ -26,7 +28,7 @@ nav {
     gap: 20px;
     position: absolute;
     left: 50%;
-    transform: translateX(-50%); /* Центрирует ссылки */
+    transform: translateX(-50%);
 }
 
 a {
@@ -44,14 +46,9 @@ a:hover {
 }
 
 h1 {
-    margin-right: 20px; /* Отступ от правого края */
-}
-
-
-
-h1 {
     margin: 0;
     font-size: 2.5em;
+    margin-right: 20px;
 }
 
 footer {
@@ -107,20 +104,14 @@ footer {
 
 .content p {
     line-height: 1.6;
+    font-size: 0.9em;
+    color: #11120D;
 }
 
 .content a {
     display: inline-block;
     margin-top: 10px;
-}
-
-.content a.button {
     margin-right: 10px;
-}
-
-.content p {
-    font-size: 0.9em;
-    color: #11120D;
 }
 
 @media (max-width: 768px) {
@@ -128,9 +119,62 @@ footer {
         padding: 10px;
         width: 100%;
     }
-
     .button {
         width: 100%;
         padding: 15px;
     }
+}
+
+.filter-panel {
+    position: relative;
+    width: 200px;
+    height: auto;
+    background-color: #565449;
+    color: #FFFBF4;
+    padding: 15px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.filter-panel h2 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin: 8px 0 5px;
+    text-align: left;
+}
+
+select {
+    width: 100%;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    background: #FFFBF4;
+    color: #333;
+}
+
+.button_filter {
+    display: block;
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #11120D;
+    color: #FFFBF4;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    border: none;
+}
+
+.button_filter:hover {
+    background-color: #444;
 }
