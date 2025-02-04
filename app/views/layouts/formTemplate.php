@@ -8,9 +8,10 @@
     <title>ToDo-List</title>
 </head>
 <body>
-    <?php 
-        include "app/views/" . $contentView;
-        include "footer.php";
+    <?php
+        require_once "app/views/layouts/header.php";
+        require_once "app/views/" . $contentView;
+        require_once "app/views/layouts/footer.php";
     ?>
 </body>
 </html>
